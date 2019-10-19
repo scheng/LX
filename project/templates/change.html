@@ -1,0 +1,19 @@
+<!-- templates/signup.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Change</h3>
+    <div class="box">
+        <form method="POST" action="/change">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="data" name="d" placeholder="" autofocus="">
+                </div>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth">Change</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!-- templates/signup.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+{% for day in range(7) %}
+<h2>Day {{day}}</h2>
+<h3>Default</h3>
+<div class="table-wrapper">
+	<table>
+		<thead>
+			<tr>
+				<td>Class      </td>
+				<td>Bus        </td>
+				<td>Time       </td>
+			</tr>
+		</thead>
+		<tbody>
+		{% for a in items %}
+			<tr>
+				<td>Event 1 </td>
+				<td> {{a}}</td>
+				<td>29.99</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endfor %}
+{% endblock %}

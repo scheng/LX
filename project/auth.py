@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
 from . import db
 
@@ -40,6 +40,7 @@ def signup_post():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
+    sched = request.form.get('sched')
 
     user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
 
@@ -48,7 +49,7 @@ def signup_post():
         return redirect(url_for('auth.signup'))
 
     # create new user with the form data. Hash the password so plaintext version isn't saved.
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), sched=sched)
 
     # add the new user to the database
     db.session.add(new_user)
@@ -61,3 +62,20 @@ def signup_post():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@auth.route('/change')
+@login_required
+def change():
+    return render_template('change.html')
+
+@auth.route('/change',methods=['POST'])
+@login_required
+def change_post():
+    data = request.form.get('d')
+    user = User.query.filter_by(email=current_user.email).first()
+    print (data, current_user.sched)
+    user.sched = data
+    db.session.commit()
+    print (user)
+    return redirect(url_for('main.profile'))
+        
