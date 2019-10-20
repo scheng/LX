@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
-from .models import Event
+from .models import Event, User
 from . import db
 main = Blueprint('main', __name__)
 
