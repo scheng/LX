@@ -41,3 +41,10 @@ def additem_post():
     d = [(e.time, e.route, e.stop) for e in Event.query.filter(user.id == Event.user_id).all()]
 
     return render_template('view_events.html', arr = d)
+
+@main.route('/view_events')
+@login_required
+def view_events():
+    user = User.query.filter_by(email=current_user.email).first()
+    d = [(e.time, e.route, e.stop) for e in Event.query.filter(user.id == Event.user_id).all()]
+    return render_template('view_events.html', arr = d)
