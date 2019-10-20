@@ -8,7 +8,7 @@ Created on Sat Oct 19 20:20:25 2019
 import json
 import requests
 from datetime import datetime
-from send_message import sendSMS
+from .send_message import sendSMS
 
 #input: two buildings (src and dest)
 #then, find possible bus routes and closest bus stops
