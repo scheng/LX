@@ -13,5 +13,5 @@ while 1:
     a = ([e.user_id for e in Event.query.filter(Event.time - 0 < 10).all()])
     for e in Event.query.filter(Event.time-0 < 10).all():
         print (User.query.get(e.user_id).email, e.stop, e.route) #phone number, and two bus stops
-        main(phone_number=User.query.get(e.user_id).email, buildA_=e.stop, buildB_=e.route)
+        main(e.stop, e.route, phone_number=User.query.get(e.user_id).email)
     time.sleep(30)
