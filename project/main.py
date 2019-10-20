@@ -28,7 +28,7 @@ def additem():
 
 @main.route('/additem', methods=['POST'])
 @login_required
-def additem():
+def additem_post():
     t = request.form.get('time')
     route = request.form.get('route')
     stop = request.form.get('stop')
