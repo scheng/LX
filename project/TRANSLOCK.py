@@ -101,7 +101,7 @@ def eta(d, d2):
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
     data = json.loads(response.text)
-    d2 = {d[a['stop_id']]: [(d2[x['route_id']], str(((datetime.strptime(x['arrival_at'], "%Y-%m-%dT%H:%M:%S-04:00") - datetime.now()).total_seconds()//60)) + " min " + str(((datetime.strptime(x['arrival_at'], "%Y-%m-%dT%H:%M:%S-04:00") - datetime.now()).total_seconds()%60//1)) + " s") for x in a['arrivals']] for a in data['data']}
+    d2 = {d[a['stop_id']]: [(d2[x['route_id']], str(((datetime.strptime(x['arrival_at'], "%Y-%m-%dT%H:%M:%S-04:00") - datetime.now()).total_seconds()//60)+240) + " min " + str(((datetime.strptime(x['arrival_at'], "%Y-%m-%dT%H:%M:%S-04:00") - datetime.now()).total_seconds()%60//1)) + " s") for x in a['arrivals']] for a in data['data']}
     #print(d2)
     return d2
     #a = [(d[a['stop_id']], ) for a in data['data']]
