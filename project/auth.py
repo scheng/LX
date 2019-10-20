@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import User, Event
 from . import db
-from .ScheduleExtractor import main
+from .finalp import p
 
 auth = Blueprint('auth', __name__)
 
@@ -51,13 +51,13 @@ def signup_post():
 
     # create new user with the form data. Hash the password so plaintext version isn't saved.
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), sched=sched)
-    datas = main()
+    datas = p(sched)
     print (datas)
     for i, days in enumerate(datas):
         for data in days:
             if len(data) == 3:
                 print ("adding events!")
-                e=Event(day = i, time= data[0], route = data[1], stop = data[2])
+                e=Event(day = i, time= data[0], route = data[1].split('-')[0], stop = data[2].split('-')[0])
                 db.session.add(e)
                 new_user.events.append(e)
     # add the new user to the database
