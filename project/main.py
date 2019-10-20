@@ -2,7 +2,8 @@
 
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
-
+from .models import Event
+from . import db
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -19,3 +20,20 @@ def profile():
 def view():
     item = ([x for x in current_user.sched.split(" ")])
     return render_template('view.html', items = item)
+
+@main.route('/additem')
+@login_required
+def additem():
+    return render_template('additem.html')
+
+@main.route('/additem', methods=['POST'])
+@login_required
+def additem():
+    t = request.form.get('time')
+    route = request.form.get('route')
+    stop = request.form.get('stop')
+    e = Event(time = t, route = route, stop = stop)
+    user = User.query.filter_by(email=current_user.email).first()
+    user.events.append(e)
+    db.session.add(e)
+    db.session.commit()

@@ -73,9 +73,6 @@ def change():
 def change_post():
     data = request.form.get('d')
     user = User.query.filter_by(email=current_user.email).first()
-    print (data, current_user.sched)
     user.sched = data
     db.session.commit()
-    print (user)
     return redirect(url_for('main.profile'))
-        
