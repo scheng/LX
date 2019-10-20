@@ -47,5 +47,5 @@ def additem_post():
 @login_required
 def view_events():
     user = User.query.filter_by(email=current_user.email).first()
-    d = [(e.time, e.route, e.stop) for e in Event.query.filter(user.id == Event.user_id).all()]
+    d = [(e.day, e.time, e.route, e.stop) for e in Event.query.filter(user.id == Event.user_id).all()]
     return render_template('view_events.html', arr = d)

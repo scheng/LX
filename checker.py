@@ -10,8 +10,8 @@ app.app_context().push()
 
 while 1:
 #    print ([(User.query.get(e.user_id).email, e.stop) for e in Event.query.all()])
-    a = ([e.user_id for e in Event.query.filter(Event.time - 0 < 0.1).all()])
-    for e in Event.query.filter(Event.time-0 < 10).all():
-#        print (User.query.get(e.user_id).email, e.stop, e.route) #phone number, and two bus stops
-        main(e.Departure, e.Destination, phone_number=User.query.get(e.user_id).email)
-    time.sleep(30)
+    a = ([e.user_id for e in Event.query.filter(Event.time - 0 < 10).all()])
+    for e in Event.query.filter(Event.time-0 < 0.1).all(): #date stuff here
+        print (User.query.get(e.user_id).email, e.stop, e.route) #phone number, and two bus stops
+        main(e.route, e.stop, phone_number=User.query.get(e.user_id).email)
+    time.sleep(60)
