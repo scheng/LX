@@ -37,5 +37,7 @@ def additem_post():
     user.events.append(e)
     db.session.add(e)
     db.session.commit()
-    d = [(e.time, e.route, e.stop) for u, e in db.session.query(User, Event).filter(User.id == Event.user_id).all()]
+#    d = [(e.time, e.route, e.stop) for u, e in db.session.query(User, Event).filter(user.id == Event.user_id).all()]
+    d = [(e.time, e.route, e.stop) for e in Event.query.filter(user.id == Event.user_id).all()]
+
     return render_template('view_events.html', arr = d)
