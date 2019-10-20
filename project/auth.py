@@ -53,11 +53,11 @@ def signup_post():
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), sched=sched)
     datas = main()
     print (datas)
-    for day in datas:
-        for data in day:
+    for i, days in enumerate(datas):
+        for data in days:
             if len(data) == 3:
                 print ("adding events!")
-                e=Event(time= data[0], route = data[1], stop = data[2])
+                e=Event(day = i, time= data[0], route = data[1], stop = data[2])
                 db.session.add(e)
                 new_user.events.append(e)
     # add the new user to the database

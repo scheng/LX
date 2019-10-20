@@ -35,7 +35,8 @@ h2 {
 	<table>
 		<thead>
 			<tr>
-				<th>Time      </th>
+				<th>Day      </th>
+				<th>Time        </th>
 				<th>Bus Route        </th>
 				<th>Bus Stop       </th>
 			</tr>
@@ -44,8 +45,9 @@ h2 {
 		{% for a in arr %}
 			<tr>
 				<td>{{a[0]}}</td>
-				<td> {{a[1]}}</td>
-				<td>{{a[2]}}</td>
+				<td>{{a[1]}}</td>
+				<td> {{a[2]}}</td>
+				<td>{{a[3]}}</td>
 			</tr>
 		{% endfor %}
 		</tbody>

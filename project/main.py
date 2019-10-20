@@ -29,16 +29,17 @@ def additem():
 @main.route('/additem', methods=['POST'])
 @login_required
 def additem_post():
+    day = request.form.get('Day')
     t = request.form.get('Time')
     route = request.form.get('Departure')
     stop = request.form.get('Destination')
-    e = Event(time = t, route = route, stop = stop)
+    e = Event(day = day, time = t, route = route, stop = stop)
     user = User.query.filter_by(email=current_user.email).first()
     user.events.append(e)
     db.session.add(e)
     db.session.commit()
 #    d = [(e.time, e.route, e.stop) for u, e in db.session.query(User, Event).filter(user.id == Event.user_id).all()]
-    d = [(e.time, e.route, e.stop) for e in Event.query.filter(user.id == Event.user_id).all()]
+    d = [(e.day, e.time, e.route, e.stop) for e in Event.query.filter(user.id == Event.user_id).all()]
 
     return render_template('view_events.html', arr = d)
 

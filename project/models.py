@@ -12,8 +12,9 @@ class User(UserMixin, db.Model):
     events = db.relationship('Event', backref='user', lazy = 'dynamic')
 
 class Event(db.Model):
+    day = db.Column(db.Integer())
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.String())
+    time = db.Column(db.Integer())
     route = db.Column(db.String())
     stop = db.Column(db.String())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
