@@ -29,9 +29,9 @@ def additem():
 @main.route('/additem', methods=['POST'])
 @login_required
 def additem_post():
-    t = request.form.get('time')
-    route = request.form.get('route')
-    stop = request.form.get('stop')
+    t = request.form.get('Time')
+    route = request.form.get('Departure')
+    stop = request.form.get('Destination')
     e = Event(time = t, route = route, stop = stop)
     user = User.query.filter_by(email=current_user.email).first()
     user.events.append(e)
