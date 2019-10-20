@@ -1,0 +1,28 @@
+<!-- templates/signup.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Events</h2>
+<h3>Default</h3>
+<div class="table-wrapper">
+	<table>
+		<thead>
+			<tr>
+				<td>Time      </td>
+				<td>Bus Route        </td>
+				<td>Bus Stop       </td>
+			</tr>
+		</thead>
+		<tbody>
+		{% for a in arr %}
+			<tr>
+				<td>{{a[0]}}</td>
+				<td> {{a[1]}}</td>
+				<td>{{a[2]}}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}
