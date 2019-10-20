@@ -14,6 +14,6 @@ class User(UserMixin, db.Model):
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.String())
-    route = db.Column(db.Integer())
-    stop = db.Column(db.Integer())
+    route = db.Column(db.String())
+    stop = db.Column(db.String())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
