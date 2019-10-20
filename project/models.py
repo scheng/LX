@@ -16,5 +16,5 @@ class Event(db.Model):
     time = db.Column(db.String())
     route = db.Column(db.Integer())
     stop = db.Column(db.Integer())
-    user_id = db.Column(db.Integer, db.ForeignKey('person.id')
+    user_id = db.Column(db.Integer, db.ForeignKey('person.id'))
 
