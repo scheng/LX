@@ -3,7 +3,7 @@ import time
 from project import create_app
 from project.models import Event
 from project.models import User
-from project.TRANSLOC import main
+from project.TRANSLOCK import main
 
 app = create_app()
 app.app_context().push()
