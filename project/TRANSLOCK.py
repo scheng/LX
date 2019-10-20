@@ -114,6 +114,7 @@ def main(buildA_='ARC', buildB_='SC', phone_number="+18482562066", weekend = Tru
     stop_dict = stops()
     route_dict = routes(stop_dict)
     stops_to_routes=eta(stop_dict, route_dict)
+    print (stops_to_routes)
     route_and_stop = building_to_stop(buildA_, buildB_, stop_dict, weekend)
     
     for stop, routes_ in stops_to_routes.items():
